@@ -38,10 +38,13 @@
   align-items:center;
   gap:12px;
   box-shadow:0 2px 6px rgba(0,0,0,.3);
+  min-width:0; /* allow shrink */
 }
+
 /* search field styling */
 .nh-search-input {
   flex:1;
+  min-width:0;           /* ⭐ REQUIRED for <300px shrink */
   padding:12px 16px;
   border-radius:999px;
   border:1px solid var(--border);
@@ -49,69 +52,65 @@
   color:var(--text);
   font-size:16px;
 }
+
+/* placeholder adjustment helps shrink */
 .nh-search-input::placeholder {
   color:#6b7280;
+  font-size:14px;
 }
-/* Search wrapper holds the preview image and input; suggestions appear absolutely beneath */
+
+/* wrapper */
 .nh-search-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   flex: 1;
+  min-width:0; /* ⭐ allows children to compress */
 }
-/* Preview image next to search field */
+
+/* logo */
 .nh-search-logo {
   width: 42px;
   height: 42px;
-  border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
+  flex-shrink:1; /* ⭐ allow reduction at narrow widths */
   margin-right: 8px;
+  border-radius: 10px;
   border: 2px solid #ffffff;
   box-shadow: 0 0 6px rgba(0,0,0,.35);
-}
-/* Custom suggestions container */
-.nh-suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  z-index: 999;
-  margin-top: 4px;
-  display: none;
-  max-height: 200px;
-  overflow-y: auto;
-}
-/* Individual suggestion row */
-.nh-suggestion {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  color: var(--text);
-  cursor: pointer;
-  border-bottom: 1px dotted var(--border);
-}
-.nh-suggestion:last-child {
-  border-bottom: none;
-}
-.nh-suggestion:hover {
-  background: var(--border);
-}
-.nh-suggestion img {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
   object-fit: cover;
-  border: 1px solid #ffffff;
-  flex-shrink: 0;
 }
-.nh-suggestion span {
-  flex: 1;
+
+/* narrow-screen overrides — enables 300px width */
+@media (max-width:360px) {
+
+  .nh-search-card {
+    padding:10px 12px;
+    gap:8px;
+  }
+
+  .nh-search-logo {
+    width:32px;
+    height:32px;
+    margin-right:6px;
+  }
+
+  .nh-search-input {
+    padding:8px 10px;
+    font-size:14px;
+  }
+
+  .nh-search-input::placeholder {
+    font-size:12px;
+  }
+
+  /* shrink Go button footprint */
+  #nh-search-btn {
+    padding:6px 10px;
+    font-size:13px;
+    white-space:nowrap;
+  }
 }
+
 
 /* -------------------- card styles -------------------- */
 .nh-card {
@@ -362,7 +361,6 @@
     gap:8px;
   }
 }
-
 /* Desktop enhancements: make search bar and logo more prominent */
 @media (min-width:700px){
   .nh-search-card{
