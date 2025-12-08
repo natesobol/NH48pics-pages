@@ -300,46 +300,47 @@
 /* -------------------- responsive adjustments -------------------- */
 /* Mobile adjustments: tighter spacing and smaller elements so more fits above the fold */
 @media (max-width:700px){
+  /* tighten overall spacing for narrow screens */
   .nh-cta-grid{
     gap:14px;
-    padding:0 14px;
+    padding:0 12px;
   }
-  /* search card: slightly smaller gap and padding */
+  /* search card: reduce padding and gap */
   .nh-search-card{
-    padding:12px 14px;
-    gap:10px;
+    padding:10px 12px;
+    gap:8px;
   }
-  /* use smaller logos on mobile for other cards */
+  /* use smaller logos and stack card content on mobile */
   .nh-card-body{
     flex-direction:column;
     text-align:center;
-    padding:12px 14px;
+    padding:12px 12px;
     min-height:auto;
-    gap:10px;
+    gap:8px;
   }
   .nh-left{ justify-content:center; }
   .nh-btn-right{ margin-left:0; }
   .nh-card-text{
-    font-size:14px;
+    font-size:13px;
     line-height:1.4;
   }
   .nh-btn{
-    padding:8px 14px;
-    font-size:14px;
+    padding:6px 12px;
+    font-size:13px;
   }
   .nh-peak-logo,
   .nh-ig-logo{
-    width:34px;
-    height:34px;
+    width:32px;
+    height:32px;
   }
   /* ensure the search logo stays small on mobile */
   .nh-search-logo{
-    width:42px;
-    height:42px;
+    width:40px;
+    height:40px;
   }
   .nh-search-input{
-    padding:12px 16px;
-    font-size:16px;
+    padding:10px 14px;
+    font-size:15px;
   }
   /* stack Howker project links on mobile */
   .hrt-nav {
@@ -350,12 +351,18 @@
   .hrt-nav a {
     /* auto width to fit content instead of 100% */
     width:auto;
-    font-size:14px;
+    font-size:13px;
     /* match tighter padding to keep buttons compact */
-    padding:0.4rem 0.9rem;
+    padding:0.4rem 0.8rem;
     margin:0;
   }
+  /* adjust CTA cards (Peakbagger and Instagram) container */
+  .cta-card{
+    padding:12px;
+    gap:8px;
+  }
 }
+
 /* Desktop enhancements: make search bar and logo more prominent */
 @media (min-width:700px){
   .nh-search-card{
