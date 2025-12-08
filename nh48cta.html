@@ -44,6 +44,67 @@
   color:#6b7280;
 }
 
+/* Search wrapper holds the preview image and input; suggestions appear absolutely beneath */
+.nh-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+/* Preview image next to search field */
+.nh-search-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 6px rgba(0,0,0,.35);
+}
+/* Custom suggestions container */
+.nh-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  z-index: 999;
+  margin-top: 4px;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+/* Individual suggestion row */
+.nh-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--border);
+}
+.nh-suggestion:last-child {
+  border-bottom: none;
+}
+.nh-suggestion:hover {
+  background: var(--border);
+}
+.nh-suggestion img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ffffff;
+  flex-shrink: 0;
+}
+.nh-suggestion span {
+  flex: 1;
+}
+
 /* card styles */
 .nh-card {
   background:var(--bg);
@@ -97,9 +158,16 @@
 <body>
 <div class="nh-cta-grid">
   <div class="nh-search-card">
-    <input id="nh-search" class="nh-search-input" type="search" placeholder="Search NH48 peaks..." list="nh-peaks">
+    <!-- Search wrapper contains preview image, input and suggestions -->
+    <div class="nh-search-wrapper">
+      <!-- Preview image updates to selected peak's primary photo -->
+      <img id="nh-search-preview" class="nh-search-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peak preview" />
+      <input id="nh-search" class="nh-search-input" type="search" placeholder="Search NH48 peaks..." autocomplete="off">
+      <!-- Custom suggestions list (hidden by default) -->
+      <div id="nh-suggestions" class="nh-suggestions"></div>
+    </div>
+    <!-- Go button remains separate for accessibility -->
     <button id="nh-search-btn" class="nh-btn nh-btn-green">Go</button>
-    <datalist id="nh-peaks"></datalist>
   </div>
 
   <div class="nh-card">
@@ -152,23 +220,17 @@
 const NH48_API_URL = "https://rawcdn.githack.com/natesobol/nh48-api/main/data/nh48.json";
 const nhSearch = document.getElementById("nh-search");
 const nhSearchBtn = document.getElementById("nh-search-btn");
-const nhPeaks = document.getElementById("nh-peaks");
+const nhSuggestions = document.getElementById("nh-suggestions");
+const nhPreview = document.getElementById("nh-search-preview");
 let nhData = null;
 
+// Load the NH48 dataset once and cache it. Each entry includes the first photo for thumbnail.
 async function loadNh48() {
   if (nhData) return;
   try {
     const resp = await fetch(NH48_API_URL);
     if (!resp.ok) return;
     nhData = await resp.json();
-    Object.values(nhData).forEach(entry => {
-      const name = entry["peakName"] || entry["Peak Name"] || "";
-      if (name) {
-        const option = document.createElement("option");
-        option.value = name;
-        nhPeaks.appendChild(option);
-      }
-    });
   } catch (e) {
     console.error(e);
   }
@@ -182,18 +244,87 @@ function goToPeak() {
   const name = nhSearch.value.trim();
   if (!name) return;
   const slug = slugify(name);
-  // navigate to Peakbagger app with hash slug (ensure the target app handles this)
-  window.open(`https://www.nh48pics.com/peakbagger#${slug}`, "_top");
+  // Navigate to the NH48 API peak detail page
+  window.open(`https://natesobol.github.io/nh48-api/nh48_peak.html?slug=${slug}`, "_top");
 }
 
-nhSearch.addEventListener("input", loadNh48);
+// Render suggestion list based on current query
+function renderSuggestions(list) {
+  // Clear previous suggestions
+  nhSuggestions.innerHTML = "";
+  if (!list || list.length === 0) {
+    nhSuggestions.style.display = "none";
+    return;
+  }
+  list.forEach((item, idx) => {
+    const div = document.createElement("div");
+    div.className = "nh-suggestion";
+    // Thumbnail
+    const img = document.createElement("img");
+    img.src = item.thumb || item.url || "";
+    img.alt = item.name;
+    div.appendChild(img);
+    // Name
+    const span = document.createElement("span");
+    span.textContent = item.name;
+    div.appendChild(span);
+    // Click handler: fill input, update preview, navigate
+    div.addEventListener("click", () => {
+      nhSearch.value = item.name;
+      // update preview image
+      if (item.url) nhPreview.src = item.url;
+      nhSuggestions.style.display = "none";
+      goToPeak();
+    });
+    nhSuggestions.appendChild(div);
+  });
+  nhSuggestions.style.display = "block";
+}
+
+// Search dataset for matches and build suggestions
+function updateSuggestions() {
+  const q = nhSearch.value.trim().toLowerCase();
+  if (!q) {
+    nhSuggestions.style.display = "none";
+    return;
+  }
+  // Ensure data is loaded
+  if (!nhData) return;
+  // Build list of matching peaks (limit 10)
+  const matches = [];
+  Object.entries(nhData).some(([slug, entry]) => {
+    const name = entry.peakName || entry["Peak Name"] || "";
+    if (!name) return false;
+    if (name.toLowerCase().includes(q)) {
+      const photos = entry.photos || [];
+      // Use first photo for thumb and url
+      const first = photos[0] || {};
+      matches.push({ name, slug, url: first.url || "", thumb: first.thumb || first.url || "" });
+      if (matches.length >= 10) return true;
+    }
+    return false;
+  });
+  renderSuggestions(matches);
+}
+
+// When typing, ensure data loaded and update suggestions
+nhSearch.addEventListener("input", async () => {
+  await loadNh48();
+  updateSuggestions();
+});
+// Enter key triggers navigation
 nhSearch.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
+    nhSuggestions.style.display = "none";
     goToPeak();
   }
 });
-nhSearchBtn.addEventListener("click", goToPeak);
+// Go button triggers navigation
+nhSearchBtn.addEventListener("click", () => {
+  nhSuggestions.style.display = "none";
+  goToPeak();
+});
 </script>
 </body>
 </html>
