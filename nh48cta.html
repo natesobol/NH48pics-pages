@@ -161,8 +161,9 @@
     <!-- Search wrapper contains preview image, input and suggestions -->
     <div class="nh-search-wrapper">
       <!-- Preview image updates to selected peak's primary photo -->
-      <img id="nh-search-preview" class="nh-search-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peak preview" />
-      <input id="nh-search" class="nh-search-input" type="search" placeholder="Search NH48 peaks..." autocomplete="off">
+      <!-- Use NH48 API logo as the default preview icon -->
+      <img id="nh-search-preview" class="nh-search-logo" src="nh48API_logo.png" alt="NH48 API logo" />
+      <input id="nh-search" class="nh-search-input" type="search" placeholder="Search NH48 peaks for a view of the summit, trail information, and more..." autocomplete="off">
       <!-- Custom suggestions list (hidden by default) -->
       <div id="nh-suggestions" class="nh-suggestions"></div>
     </div>
