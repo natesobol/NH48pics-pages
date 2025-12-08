@@ -8,7 +8,12 @@
 /* global theme variables */
 /* CTA grid: use full width with symmetric padding equal to the gap */
 .nh-cta-grid {
-  --bg:#0b1220; --border:#22314a; --text:#e6edf3; --green:#22c55e; --btn-text:#0a0a0a;
+  /* theme colours */
+  --bg:#0b1220;
+  --border:#22314a;
+  --text:#e6edf3;
+  --green:#22c55e;
+  --btn-text:#0a0a0a;
   font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
   display:grid;
   gap:24px;
@@ -17,9 +22,12 @@
   padding:0 24px; /* left/right padding equals gap */
   box-sizing:border-box;
 }
+/* two column layout on medium+ screens */
 @media (min-width:820px) {
   .nh-cta-grid { grid-template-columns:1fr 1fr; }
 }
+
+/* -------------------- search card -------------------- */
 .nh-search-card {
   grid-column:1 / -1;
   background:var(--bg);
@@ -31,6 +39,7 @@
   gap:12px;
   box-shadow:0 2px 6px rgba(0,0,0,.3);
 }
+/* search field styling */
 .nh-search-input {
   flex:1;
   padding:12px 16px;
@@ -43,7 +52,6 @@
 .nh-search-input::placeholder {
   color:#6b7280;
 }
-
 /* Search wrapper holds the preview image and input; suggestions appear absolutely beneath */
 .nh-search-wrapper {
   position: relative;
@@ -105,7 +113,7 @@
   flex: 1;
 }
 
-/* card styles */
+/* -------------------- card styles -------------------- */
 .nh-card {
   background:var(--bg);
   border:1px solid var(--border);
@@ -114,49 +122,225 @@
   box-shadow:0 2px 6px rgba(0,0,0,.3);
 }
 .nh-card-body{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:18px; padding:18px 20px; min-height:110px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:18px 20px;
+  min-height:110px;
 }
-.nh-left{ display:flex; align-items:center; gap:14px; flex:1; min-width:0; }
-.nh-right{ display:flex; align-items:center; }
-.nh-card-text{ margin:0; font-size:16px; line-height:1.5; color:var(--text); }
-.nh-card-text strong{ color:#fff; }
-.nh-card-copy{ display:flex; flex-direction:column; justify-content:center; }
+.nh-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex:1;
+  min-width:0;
+}
+.nh-right{
+  display:flex;
+  align-items:center;
+}
+.nh-card-text{
+  margin:0;
+  font-size:16px;
+  line-height:1.5;
+  color:var(--text);
+}
+.nh-card-text strong{
+  color:#fff;
+}
+.nh-card-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 .nh-btn{
-  display:inline-block; padding:10px 18px; border-radius:999px;
-  font-weight:700; text-decoration:none; white-space:nowrap; transition:all .15s ease;
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:700;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:all .15s ease;
   outline-offset:3px;
+  font-size:15px;
 }
-.nh-btn:focus-visible{ box-shadow:0 0 0 3px rgba(255,255,255,.18); }
-.nh-btn-green{ background:var(--green); color:var(--btn-text); border:1px solid transparent; }
-.nh-btn-green:hover{ transform:translateY(-1px); box-shadow:0 2px 8px rgba(34,197,94,.25); }
-.nh-btn-right{ margin-left:auto; }
-
+.nh-btn:focus-visible{
+  box-shadow:0 0 0 3px rgba(255,255,255,.18);
+}
+.nh-btn-green{
+  background:var(--green);
+  color:var(--btn-text);
+  border:1px solid transparent;
+}
+.nh-btn-green:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(34,197,94,.25);
+}
+.nh-btn-right{
+  margin-left:auto;
+}
 /* Instagram specifics */
-.nh-ig{ gap:16px; }
+.nh-ig{
+  gap:16px;
+}
 .nh-ig-logo{
-  width:42px; height:42px; object-fit:cover; border-radius:10px; flex-shrink:0;
+  width:42px;
+  height:42px;
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
   border:2px solid #ffffff;
   box-shadow:0 0 6px rgba(0,0,0,.35);
 }
-
 /* Peakbagger panel logo (same style as Instagram profile image) */
 .nh-peak-logo {
-  width:42px; height:42px; object-fit:cover; border-radius:10px; flex-shrink:0;
+  width:42px;
+  height:42px;
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
   border:2px solid #ffffff;
   box-shadow:0 0 6px rgba(0,0,0,.35);
 }
 
-/* mobile adjustments */
+/* -------------------- HRT navigation card -------------------- */
+/* The fourth card contains multiple links to HRT projects.
+   It adopts the same colour scheme and rounded corners as other CTA cards. */
+.hrt-nav {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:6px;
+}
+.hrt-nav a {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:1 1 calc(50% - 12px);
+  min-width:160px;
+  padding:0.85rem 1.4rem 0.85rem 2.6rem;
+  min-height:60px;
+  background-color:var(--green);
+  color:var(--btn-text);
+  border:1px solid var(--border);
+  border-radius:9999px;
+  text-decoration:none;
+  font-weight:700;
+  line-height:1.25;
+  white-space:normal;
+  box-shadow:0 2px 4px rgba(0,0,0,0.25);
+  transition:background-color .3s ease, box-shadow .3s ease, transform .15s ease;
+  font-size:15px;
+}
+.hrt-nav a:hover {
+  background-color: #1fa250;
+  transform: translateY(-2px);
+  box-shadow:0 0 10px rgba(255,255,255,0.35);
+}
+.hrt-nav a .icon {
+  position:absolute;
+  left:1rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.25rem;
+  color:var(--btn-text);
+}
+.hrt-nav a .label {
+  width:100%;
+  padding:0 0.25rem;
+  text-align:center;
+}
+/* responsive behaviour for HRT nav: stack items on very narrow screens */
+@media (max-width:500px) {
+  .hrt-nav a {
+    flex-basis:100%;
+    padding-left:3rem;
+    min-height:56px;
+  }
+  .hrt-nav a .label {
+    text-align:left;
+    padding-left:0.5rem;
+  }
+}
+
+/* -------------------- responsive adjustments -------------------- */
+/* Mobile adjustments: tighter spacing and smaller elements so more fits above the fold */
 @media (max-width:700px){
-  .nh-card-body{ flex-direction:column; text-align:center; }
+  .nh-cta-grid{
+    gap:14px;
+    padding:0 14px;
+  }
+  /* search card: slightly smaller gap and padding */
+  .nh-search-card{
+    padding:12px 14px;
+    gap:10px;
+  }
+  /* use smaller logos on mobile for other cards */
+  .nh-card-body{
+    flex-direction:column;
+    text-align:center;
+    padding:12px 14px;
+    min-height:auto;
+    gap:10px;
+  }
   .nh-left{ justify-content:center; }
   .nh-btn-right{ margin-left:0; }
+  .nh-card-text{
+    font-size:14px;
+    line-height:1.4;
+  }
+  .nh-btn{
+    padding:8px 14px;
+    font-size:14px;
+  }
+  .nh-peak-logo,
+  .nh-ig-logo{
+    width:34px;
+    height:34px;
+  }
+  /* ensure the search logo stays small on mobile */
+  .nh-search-logo{
+    width:42px;
+    height:42px;
+  }
+  .nh-search-input{
+    padding:12px 16px;
+    font-size:16px;
+  }
+  /* reduce nav button size on mobile */
+  .hrt-nav a {
+    font-size:14px;
+    padding:0.7rem 1.2rem 0.7rem 2.4rem;
+    min-height:56px;
+  }
+}
+/* Desktop enhancements: make search bar and logo more prominent */
+@media (min-width:700px){
+  .nh-search-card{
+    padding:20px 26px;
+    gap:16px;
+  }
+  .nh-search-logo{
+    width:56px;
+    height:56px;
+  }
+  .nh-search-input{
+    padding:14px 18px;
+    font-size:18px;
+  }
+  #nh-search-btn.nh-btn{
+    padding:12px 20px;
+    font-size:16px;
+  }
 }
 </style>
 </head>
 <body>
 <div class="nh-cta-grid">
+  <!-- Search Card -->
   <div class="nh-search-card">
     <!-- Search wrapper contains preview image, input and suggestions -->
     <div class="nh-search-wrapper">
@@ -171,13 +355,14 @@
     <button id="nh-search-btn" class="nh-btn nh-btn-green">Go</button>
   </div>
 
+  <!-- Peakbagger CTA -->
   <div class="nh-card">
     <div class="nh-card-body">
       <div class="nh-left">
         <!-- Peakbagger profile image for visual parity with Instagram panel -->
         <img class="nh-peak-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peakbagger logo" />
         <p class="nh-card-text" style="max-width:100%">
-          Track, save & export your hiking lists privately and for free with
+          Track, save &amp; export your hiking lists privately and for free with
           <strong>Peakbagger’s Journal Web App</strong>.
         </p>
       </div>
@@ -192,6 +377,7 @@
     </div>
   </div>
 
+  <!-- Instagram CTA -->
   <div class="nh-card">
     <div class="nh-card-body">
       <div class="nh-left nh-ig">
@@ -215,6 +401,32 @@
       </div>
     </div>
   </div>
+
+  <!-- HRT Projects navigation card -->
+  <div class="nh-card">
+    <div class="nh-card-body" style="flex-direction:column; align-items:stretch; text-align:center; gap:14px;">
+      <p class="nh-card-text" style="font-weight:700; font-size:18px; margin-bottom:4px;">Explore HRT Projects</p>
+      <nav class="hrt-nav">
+        <a href="https://www.nh48pics.com/hrt-plant-catalog" target="_blank" rel="noopener">
+          <span class="icon">🌿</span>
+          <span class="label">Plant Catalog</span>
+        </a>
+        <a href="https://www.nh48pics.com/hrt-trail-map" target="_blank" rel="noopener">
+          <span class="icon">🗺️</span>
+          <span class="label">Trail Map</span>
+        </a>
+        <a href="https://www.nh48pics.com/hrt-info" target="_blank" rel="noopener">
+          <span class="icon">ℹ️</span>
+          <span class="label">Trail Info</span>
+        </a>
+        <a href="https://www.nh48pics.com/howker-data" target="_blank" rel="noopener">
+          <span class="icon">☁️</span>
+          <span class="label">Trail Conditions</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
 </div>
 
 <script type="module">
@@ -257,7 +469,7 @@ function renderSuggestions(list) {
     nhSuggestions.style.display = "none";
     return;
   }
-  list.forEach((item, idx) => {
+  list.forEach((item) => {
     const div = document.createElement("div");
     div.className = "nh-suggestion";
     // Thumbnail
