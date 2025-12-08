@@ -204,65 +204,93 @@
   box-shadow:0 0 6px rgba(0,0,0,.35);
 }
 
+/* ensure the Howker Ridge navigation card spans both columns on larger screens */
+.hrt-nav-card {
+  grid-column:1 / -1;
+}
+
+/* -------------------- HRT card specific styles -------------------- */
+/* ensure the Howker Ridge card uses a vertical layout and expands as needed */
+.hrt-card {
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:flex-start;
+  gap:14px;
+  padding:18px 20px;
+  min-height:auto;
+}
+/* heading within the HRT card */
+.hrt-heading {
+  font-weight:700;
+  font-size:18px;
+  margin:0;
+  text-align:center;
+}
+
+/* Centered layout for secondary CTA cards (Peakbagger and Instagram) */
+.cta-card {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:14px;
+  padding:18px 20px;
+  min-height:110px;
+}
+
+/* ensure text inside CTA cards is centered */
+.cta-card p {
+  text-align:center;
+}
+
 /* -------------------- HRT navigation card -------------------- */
 /* The fourth card contains multiple links to HRT projects.
    It adopts the same colour scheme and rounded corners as other CTA cards. */
 .hrt-nav {
+  /* navigation bar for Howker Ridge projects: horizontal by default */
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
+  align-items:center;
   gap:12px;
   margin-top:6px;
 }
 .hrt-nav a {
-  position:relative;
-  display:flex;
+  /* project links: auto width with minimal padding */
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  flex:1 1 calc(50% - 12px);
-  min-width:160px;
-  padding:0.85rem 1.4rem 0.85rem 2.6rem;
-  min-height:60px;
+  padding:0.5rem 1rem;
   background-color:var(--green);
   color:var(--btn-text);
   border:1px solid var(--border);
   border-radius:9999px;
   text-decoration:none;
   font-weight:700;
-  line-height:1.25;
-  white-space:normal;
+  font-size:15px;
+  line-height:1.2;
+  white-space:nowrap;
   box-shadow:0 2px 4px rgba(0,0,0,0.25);
   transition:background-color .3s ease, box-shadow .3s ease, transform .15s ease;
-  font-size:15px;
 }
 .hrt-nav a:hover {
   background-color: #1fa250;
   transform: translateY(-2px);
   box-shadow:0 0 10px rgba(255,255,255,0.35);
 }
-.hrt-nav a .icon {
-  position:absolute;
-  left:1rem;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:1.25rem;
-  color:var(--btn-text);
-}
-.hrt-nav a .label {
-  width:100%;
-  padding:0 0.25rem;
-  text-align:center;
-}
 /* responsive behaviour for HRT nav: stack items on very narrow screens */
 @media (max-width:500px) {
-  .hrt-nav a {
-    flex-basis:100%;
-    padding-left:3rem;
-    min-height:56px;
+  .hrt-nav {
+    flex-direction:column;
+    align-items:center;
   }
-  .hrt-nav a .label {
-    text-align:left;
-    padding-left:0.5rem;
+  .hrt-nav a {
+    width:100%;
+    max-width:260px;
+    font-size:13px;
+    padding:0.5rem 0.8rem;
   }
 }
 
@@ -310,11 +338,17 @@
     padding:12px 16px;
     font-size:16px;
   }
-  /* reduce nav button size on mobile */
+  /* stack Howker project links on mobile */
+  .hrt-nav {
+    flex-direction:column;
+    align-items:center;
+  }
   .hrt-nav a {
+    width:100%;
+    max-width:280px;
     font-size:14px;
-    padding:0.7rem 1.2rem 0.7rem 2.4rem;
-    min-height:56px;
+    padding:0.5rem 1rem;
+    margin:0;
   }
 }
 /* Desktop enhancements: make search bar and logo more prominent */
@@ -355,77 +389,55 @@
     <button id="nh-search-btn" class="nh-btn nh-btn-green">Go</button>
   </div>
 
+  <!-- Howker Ridge Projects navigation card (moved under the search bar) -->
+  <div class="nh-card hrt-nav-card">
+    <div class="nh-card-body hrt-card">
+      <p class="nh-card-text hrt-heading">Explore Howker Ridge Projects</p>
+      <nav class="hrt-nav">
+        <a href="https://www.nh48pics.com/hrt-plant-catalog" target="_blank" rel="noopener">Plant Catalog</a>
+        <a href="https://www.nh48pics.com/hrt-trail-map" target="_blank" rel="noopener">Trail Map</a>
+        <a href="https://www.nh48pics.com/hrt-info" target="_blank" rel="noopener">Trail Info</a>
+        <a href="https://www.nh48pics.com/howker-data" target="_blank" rel="noopener">Trail Conditions</a>
+      </nav>
+    </div>
+  </div>
+
   <!-- Peakbagger CTA -->
   <div class="nh-card">
-    <div class="nh-card-body">
-      <div class="nh-left">
-        <!-- Peakbagger profile image for visual parity with Instagram panel -->
-        <img class="nh-peak-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peakbagger logo" />
-        <p class="nh-card-text" style="max-width:100%">
-          Track, save &amp; export your hiking lists privately and for free with
-          <strong>Peakbagger’s Journal Web App</strong>.
-        </p>
-      </div>
-      <div class="nh-right">
-        <a href="https://www.nh48pics.com/peakbagger"
-           class="nh-btn nh-btn-green nh-btn-right"
-           target="_top"
-           aria-label="Open Peakbagger’s Journal Web App">
-          Open the app →
-        </a>
-      </div>
+    <div class="cta-card">
+      <img class="nh-peak-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peakbagger logo" />
+      <p class="nh-card-text" style="max-width:100%">
+        Track, save &amp; export your hiking lists privately and for free with
+        <strong>Peakbagger’s Journal Web App</strong>.
+      </p>
+      <a href="https://www.nh48pics.com/peakbagger"
+         class="nh-btn nh-btn-green"
+         target="_top"
+         aria-label="Open Peakbagger’s Journal Web App">
+        Open the app →
+      </a>
     </div>
   </div>
 
   <!-- Instagram CTA -->
   <div class="nh-card">
-    <div class="nh-card-body">
-      <div class="nh-left nh-ig">
-        <img class="nh-ig-logo"
-             src="https://static.wixstatic.com/media/66b1b2_ae7d4a9a1f6a410299a45f7cf4748203~mv2.jpg"
-             alt="Instagram profile logo" />
-        <div class="nh-card-copy">
-          <p class="nh-card-text">
-            See my latest White Mountains photos
-            <strong>@nate_dumps_pics</strong>.
-          </p>
-        </div>
-      </div>
-      <div class="nh-right">
-        <a href="https://instagram.com/nate_dumps_pics"
-           class="nh-btn nh-btn-green nh-btn-right"
-           target="_top"
-           aria-label="View photos on Instagram">
-          View Photos
-        </a>
-      </div>
+    <div class="cta-card">
+      <img class="nh-ig-logo"
+           src="https://static.wixstatic.com/media/66b1b2_ae7d4a9a1f6a410299a45f7cf4748203~mv2.jpg"
+           alt="Instagram profile logo" />
+      <p class="nh-card-text">
+        See my latest White Mountains photos
+        <strong>@nate_dumps_pics</strong>.
+      </p>
+      <a href="https://instagram.com/nate_dumps_pics"
+         class="nh-btn nh-btn-green"
+         target="_top"
+         aria-label="View photos on Instagram">
+        View Photos
+      </a>
     </div>
   </div>
 
-  <!-- HRT Projects navigation card -->
-  <div class="nh-card">
-    <div class="nh-card-body" style="flex-direction:column; align-items:stretch; text-align:center; gap:14px;">
-      <p class="nh-card-text" style="font-weight:700; font-size:18px; margin-bottom:4px;">Explore HRT Projects</p>
-      <nav class="hrt-nav">
-        <a href="https://www.nh48pics.com/hrt-plant-catalog" target="_blank" rel="noopener">
-          <span class="icon">🌿</span>
-          <span class="label">Plant Catalog</span>
-        </a>
-        <a href="https://www.nh48pics.com/hrt-trail-map" target="_blank" rel="noopener">
-          <span class="icon">🗺️</span>
-          <span class="label">Trail Map</span>
-        </a>
-        <a href="https://www.nh48pics.com/hrt-info" target="_blank" rel="noopener">
-          <span class="icon">ℹ️</span>
-          <span class="label">Trail Info</span>
-        </a>
-        <a href="https://www.nh48pics.com/howker-data" target="_blank" rel="noopener">
-          <span class="icon">☁️</span>
-          <span class="label">Trail Conditions</span>
-        </a>
-      </nav>
-    </div>
-  </div>
 
 </div>
 
