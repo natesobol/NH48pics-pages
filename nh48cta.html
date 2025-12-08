@@ -6,14 +6,16 @@
 <title>NH48 CTA</title>
 <style>
 /* global theme variables */
+/* CTA grid: use full width with symmetric padding equal to the gap */
 .nh-cta-grid {
   --bg:#0b1220; --border:#22314a; --text:#e6edf3; --green:#22c55e; --btn-text:#0a0a0a;
   font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
   display:grid;
   gap:24px;
-  max-width:900px;
+  width:100%;
   margin:0 auto;
-  padding:0 24px;
+  padding:0 24px; /* left/right padding equals gap */
+  box-sizing:border-box;
 }
 @media (min-width:820px) {
   .nh-cta-grid { grid-template-columns:1fr 1fr; }
@@ -77,6 +79,13 @@
   box-shadow:0 0 6px rgba(0,0,0,.35);
 }
 
+/* Peakbagger panel logo (same style as Instagram profile image) */
+.nh-peak-logo {
+  width:42px; height:42px; object-fit:cover; border-radius:10px; flex-shrink:0;
+  border:2px solid #ffffff;
+  box-shadow:0 0 6px rgba(0,0,0,.35);
+}
+
 /* mobile adjustments */
 @media (max-width:700px){
   .nh-card-body{ flex-direction:column; text-align:center; }
@@ -96,7 +105,9 @@
   <div class="nh-card">
     <div class="nh-card-body">
       <div class="nh-left">
-        <p class="nh-card-text">
+        <!-- Peakbagger profile image for visual parity with Instagram panel -->
+        <img class="nh-peak-logo" src="https://static.wixstatic.com/media/66b1b2_c577d5f395d84e10b6e2c54a428c51a0~mv2.png" alt="Peakbagger logo" />
+        <p class="nh-card-text" style="max-width:100%">
           Track, save & export your hiking lists privately and for free with
           <strong>Peakbagger’s Journal Web App</strong>.
         </p>
