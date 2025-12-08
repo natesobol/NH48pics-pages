@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NH48 CTA</title>
+<style>
+/* global theme variables */
+.nh-cta-grid {
+  --bg:#0b1220; --border:#22314a; --text:#e6edf3; --green:#22c55e; --btn-text:#0a0a0a;
+  font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  display:grid;
+  gap:24px;
+  max-width:900px;
+  margin:0 auto;
+  padding:0 24px;
+}
+@media (min-width:820px) {
+  .nh-cta-grid { grid-template-columns:1fr 1fr; }
+}
+.nh-search-card {
+  grid-column:1 / -1;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.nh-search-input {
+  flex:1;
+  padding:12px 16px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  font-size:16px;
+}
+.nh-search-input::placeholder {
+  color:#6b7280;
+}
+
+/* card styles */
+.nh-card {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:16px;
+  color:var(--text);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.nh-card-body{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:18px; padding:18px 20px; min-height:110px;
+}
+.nh-left{ display:flex; align-items:center; gap:14px; flex:1; min-width:0; }
+.nh-right{ display:flex; align-items:center; }
+.nh-card-text{ margin:0; font-size:16px; line-height:1.5; color:var(--text); }
+.nh-card-text strong{ color:#fff; }
+.nh-card-copy{ display:flex; flex-direction:column; justify-content:center; }
+.nh-btn{
+  display:inline-block; padding:10px 18px; border-radius:999px;
+  font-weight:700; text-decoration:none; white-space:nowrap; transition:all .15s ease;
+  outline-offset:3px;
+}
+.nh-btn:focus-visible{ box-shadow:0 0 0 3px rgba(255,255,255,.18); }
+.nh-btn-green{ background:var(--green); color:var(--btn-text); border:1px solid transparent; }
+.nh-btn-green:hover{ transform:translateY(-1px); box-shadow:0 2px 8px rgba(34,197,94,.25); }
+.nh-btn-right{ margin-left:auto; }
+
+/* Instagram specifics */
+.nh-ig{ gap:16px; }
+.nh-ig-logo{
+  width:42px; height:42px; object-fit:cover; border-radius:10px; flex-shrink:0;
+  border:2px solid #ffffff;
+  box-shadow:0 0 6px rgba(0,0,0,.35);
+}
+
+/* mobile adjustments */
+@media (max-width:700px){
+  .nh-card-body{ flex-direction:column; text-align:center; }
+  .nh-left{ justify-content:center; }
+  .nh-btn-right{ margin-left:0; }
+}
+</style>
+</head>
+<body>
+<div class="nh-cta-grid">
+  <div class="nh-search-card">
+    <input id="nh-search" class="nh-search-input" type="search" placeholder="Search NH48 peaks..." list="nh-peaks">
+    <button id="nh-search-btn" class="nh-btn nh-btn-green">Go</button>
+    <datalist id="nh-peaks"></datalist>
+  </div>
+
+  <div class="nh-card">
+    <div class="nh-card-body">
+      <div class="nh-left">
+        <p class="nh-card-text">
+          Track, save & export your hiking lists privately and for free with
+          <strong>Peakbagger’s Journal Web App</strong>.
+        </p>
+      </div>
+      <div class="nh-right">
+        <a href="https://www.nh48pics.com/peakbagger"
+           class="nh-btn nh-btn-green nh-btn-right"
+           target="_top"
+           aria-label="Open Peakbagger’s Journal Web App">
+          Open the app →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nh-card">
+    <div class="nh-card-body">
+      <div class="nh-left nh-ig">
+        <img class="nh-ig-logo"
+             src="https://static.wixstatic.com/media/66b1b2_ae7d4a9a1f6a410299a45f7cf4748203~mv2.jpg"
+             alt="Instagram profile logo" />
+        <div class="nh-card-copy">
+          <p class="nh-card-text">
+            See my latest White Mountains photos
+            <strong>@nate_dumps_pics</strong>.
+          </p>
+        </div>
+      </div>
+      <div class="nh-right">
+        <a href="https://instagram.com/nate_dumps_pics"
+           class="nh-btn nh-btn-green nh-btn-right"
+           target="_top"
+           aria-label="View photos on Instagram">
+          View Photos
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+const NH48_API_URL = "https://rawcdn.githack.com/natesobol/nh48-api/main/data/nh48.json";
+const nhSearch = document.getElementById("nh-search");
+const nhSearchBtn = document.getElementById("nh-search-btn");
+const nhPeaks = document.getElementById("nh-peaks");
+let nhData = null;
+
+async function loadNh48() {
+  if (nhData) return;
+  try {
+    const resp = await fetch(NH48_API_URL);
+    if (!resp.ok) return;
+    nhData = await resp.json();
+    Object.values(nhData).forEach(entry => {
+      const name = entry["peakName"] || entry["Peak Name"] || "";
+      if (name) {
+        const option = document.createElement("option");
+        option.value = name;
+        nhPeaks.appendChild(option);
+      }
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function slugify(name) {
+  return (name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function goToPeak() {
+  const name = nhSearch.value.trim();
+  if (!name) return;
+  const slug = slugify(name);
+  // navigate to Peakbagger app with hash slug (ensure the target app handles this)
+  window.open(`https://www.nh48pics.com/peakbagger#${slug}`, "_top");
+}
+
+nhSearch.addEventListener("input", loadNh48);
+nhSearch.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    goToPeak();
+  }
+});
+nhSearchBtn.addEventListener("click", goToPeak);
+</script>
+</body>
+</html>
