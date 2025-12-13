@@ -420,7 +420,7 @@
         Track, save &amp; export your hiking lists privately and for free with
         <strong>Peakbagger’s Journal Web App</strong>.
       </p>
-      <a href="https://www.nh48pics.com/peakbagger"
+      <a href="https://www.nh48.app"
          class="nh-btn nh-btn-green"
          target="_top"
          aria-label="Open Peakbagger’s Journal Web App">
@@ -452,7 +452,7 @@
 </div>
 
 <script type="module">
-const NH48_API_URL = "https://rawcdn.githack.com/natesobol/nh48-api/main/data/nh48.json";
+const NH48_API_URL = "https://www.nh48.info/data/nh48.json";
 const nhSearch = document.getElementById("nh-search");
 const nhSearchBtn = document.getElementById("nh-search-btn");
 const nhSuggestions = document.getElementById("nh-suggestions");
@@ -480,7 +480,7 @@ function goToPeak() {
   if (!name) return;
   const slug = slugify(name);
   // Navigate to the NH48 API peak detail page
-  window.open(`https://natesobol.github.io/nh48-api/nh48_peak.html?slug=${slug}`, "_top");
+  window.open(`https://www.nh48.info/nh48_peak.html?slug=${slug}`, "_top");
 }
 
 // Render suggestion list based on current query
