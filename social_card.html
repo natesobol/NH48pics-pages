@@ -279,8 +279,13 @@
     object-fit:cover;
   }
 
-  /* Link text styling: bold and center aligned */
+  /* Link text styling: bold headline with caption stacked below */
   .txt{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
     font-size:16px;
     font-weight:700;
     letter-spacing:.2px;
@@ -288,6 +293,14 @@
     white-space:normal;
     overflow:visible;
     text-overflow:clip;
+  }
+
+  .txt .caption{
+    font-size:13px;
+    font-weight:500;
+    color:var(--muted);
+    letter-spacing:0;
+    line-height:1.35;
   }
 
   /* Chevron icon styling */
@@ -356,6 +369,7 @@
   /* Small screens: adjust sizes, paddings, fonts */
   @media (max-width: 420px){
     .txt{ font-size:15px; }
+    .txt .caption{ font-size:12px; }
     .link{ padding:12px 14px; min-height:60px; }
     .card{ padding:16px; }
   }
@@ -377,9 +391,8 @@
     .blurb{
       font-size: 11px;
     }
-    .txt{
-      font-size:14px;
-    }
+    .txt{ font-size:14px; }
+    .txt .caption{ font-size:11px; }
     .link{
       grid-template-columns:36px 1fr 18px;
       padding:10px 12px;
@@ -487,49 +500,40 @@
         <!-- Homepage -->
         <a class="link" href="https://www.nh48pics.com/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=linkinbio" target="_blank" rel="noopener noreferrer" aria-label="Open nh48pics.com in a new tab">
           <span class="icon" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_40a2129fe8a9406d9edb3944d78b7164~mv2.png" alt="NH48pics logo" /></span>
-          <span class="txt">NH48pics.com Home</span>
-          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        </a>
-
-        <!-- Framed photos store -->
-        <a class="link" href="https://www.nh48pics.com/category/framed-photos?utm_source=links&amp;utm_medium=social&amp;utm_campaign=framedprints" target="_blank" rel="noopener noreferrer" aria-label="Shop framed photos">
-          <span class="icon" aria-hidden="true">🖼</span>
-          <span class="txt">Shop Framed Photos</span>
-          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        </a>
-
-        <!-- Woodworking store -->
-        <a class="link" href="https://www.nh48pics.com/category/woodworking?utm_source=links&amp;utm_medium=social&amp;utm_campaign=woodworking" target="_blank" rel="noopener noreferrer" aria-label="Shop woodworking items">
-          <span class="icon" aria-hidden="true">🪵</span>
-          <span class="txt">Shop Woodworking</span>
-          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        </a>
-
-        <!-- Etsy shop -->
-        <a class="link" href="https://www.etsy.com/shop/NH48pics?utm_source=links&amp;utm_medium=social&amp;utm_campaign=etsy" target="_blank" rel="noopener noreferrer" aria-label="Open Etsy shop in a new tab">
-          <span class="icon" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_f4cf317552d0465eb0b87ff1f9ad1ff5~mv2.png" alt="Etsy logo" /></span>
-          <span class="txt">Etsy Shop · Prints &amp; Stickers</span>
-          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        </a>
-
-        <!-- NH48 API web app -->
-        <a class="link" href="https://www.nh48.info/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=nh48api" target="_blank" rel="noopener noreferrer" aria-label="Open NH48 API web app">
-          <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="nh48API_logo.png" alt="NH48 API logo" /></span>
-          <span class="txt">NH48 API Web App</span>
-          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        </a>
-
-        <!-- WMNF Trails web app -->
-        <a class="link" href="https://www.nh48.info/pages/trails_app.html?utm_source=links&amp;utm_medium=social&amp;utm_campaign=wmnftrails" target="_blank" rel="noopener noreferrer" aria-label="Open WMNF Trails web app">
-          <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="WMNF_Trails_API_logo.png" alt="WMNF Trails app logo" /></span>
-          <span class="txt">WMNF Trails Web App</span>
+          <span class="txt">
+            <span>NH48pics.com Home</span>
+            <span class="caption">Photography centered on New Hampshire’s White Mountains</span>
+          </span>
           <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
         </a>
 
         <!-- Peakbagger’s Journal web app -->
         <a class="link" href="https://www.nh48.app/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=peakbagger" target="_blank" rel="noopener noreferrer" aria-label="Open Peakbagger’s Journal Web app">
           <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_6dfce097ed584b5296afeb83f26e4c8a~mv2.png" alt="Peakbagger logo" /></span>
-          <span class="txt">Peakbagger’s Journal Web App</span>
+          <span class="txt">
+            <span>Peakbagger’s Journal Web App</span>
+            <span class="caption">Track hikes, summits, and progress across peak lists</span>
+          </span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- NH48 API web app -->
+        <a class="link" href="https://www.nh48.info/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=nh48api" target="_blank" rel="noopener noreferrer" aria-label="Open NH48 API web app">
+          <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="nh48API_logo.png" alt="NH48 API logo" /></span>
+          <span class="txt">
+            <span>NH48 API Web App</span>
+            <span class="caption">Structured data for New Hampshire’s 4,000-foot mountains</span>
+          </span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- WMNF Trails web app -->
+        <a class="link" href="https://www.nh48.info/pages/trails_app.html?utm_source=links&amp;utm_medium=social&amp;utm_campaign=wmnftrails" target="_blank" rel="noopener noreferrer" aria-label="Open WMNF Trails web app">
+          <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="WMNF_Trails_API_logo.png" alt="WMNF Trails app logo" /></span>
+          <span class="txt">
+            <span>WMNF Trails Web App</span>
+            <span class="caption">Explore White Mountain National Forest trails and routes</span>
+          </span>
           <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
         </a>
 
@@ -540,14 +544,50 @@
             <img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_9d069d65e7fc43059106f805a45de873~mv2.png" alt="Howker Ridge logo 2" />
             <img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_ae699f4f2e4f4f28b7734c32b8cbfedc~mv2.png" alt="Plant Catalog logo" />
           </span>
-          <span class="txt">Howker Ridge Trail</span>
+          <span class="txt">
+            <span>Howker Ridge Trail</span>
+            <span class="caption">My trail stewardship projects, plants, &amp; documentation.</span>
+          </span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- Framed photos store -->
+        <a class="link" href="https://www.nh48pics.com/category/framed-photos?utm_source=links&amp;utm_medium=social&amp;utm_campaign=framedprints" target="_blank" rel="noopener noreferrer" aria-label="Shop framed photos">
+          <span class="icon" aria-hidden="true">🖼</span>
+          <span class="txt">
+            <span>Shop Framed Photos</span>
+            <span class="caption">Framed &amp; unframed WMNF photography, ready to hang</span>
+          </span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- Woodworking store -->
+        <a class="link" href="https://www.nh48pics.com/category/woodworking?utm_source=links&amp;utm_medium=social&amp;utm_campaign=woodworking" target="_blank" rel="noopener noreferrer" aria-label="Shop woodworking items">
+          <span class="icon" aria-hidden="true">🪵</span>
+          <span class="txt">
+            <span>Shop Woodworking</span>
+            <span class="caption">Handcrafted wood pieces inspired by New Hampshire landscapes</span>
+          </span>
+          <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <!-- Etsy shop -->
+        <a class="link" href="https://www.etsy.com/shop/NH48pics?utm_source=links&amp;utm_medium=social&amp;utm_campaign=etsy" target="_blank" rel="noopener noreferrer" aria-label="Open Etsy shop in a new tab">
+          <span class="icon" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_f4cf317552d0465eb0b87ff1f9ad1ff5~mv2.png" alt="Etsy logo" /></span>
+          <span class="txt">
+            <span>Etsy Shop · Prints &amp; Stickers</span>
+            <span class="caption">Prints and stickers featuring White Mountains photography</span>
+          </span>
           <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
         </a>
 
         <!-- Instagram link -->
         <a class="link" href="https://www.instagram.com/nate_dumps_pics/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=instagram" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile">
           <span class="icon" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_888cea41098b42f0b5105b1d2814cff0~mv2.png" alt="Instagram logo" /></span>
-          <span class="txt">Instagram @nate_dumps_pics</span>
+          <span class="txt">
+            <span>Instagram @nate_dumps_pics</span>
+            <span class="caption">Latest trips, photos &amp; videos</span>
+          </span>
           <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
         </a>
       </nav>
