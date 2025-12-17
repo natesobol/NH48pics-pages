@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Links & More – NH48pics</title>
+<title>NH48pics Footer – Links</title>
 <base href="https://www.nh48pics.com/" target="_top">
 
 <!-- Make all links open in the top window by default (escape the iframe) -->
@@ -13,22 +13,22 @@
   :root{
     --panel:#0b1220;--ink:#e6edf3;--muted:#a5b4c3;--accent:#22c55e;--card:#101827;--stroke:#22314a;
   }
-  .wrap{max-width:1100px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
-  .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px}
-  .grid{display:grid;gap:22px}
-  @media (min-width:860px){.grid{grid-template-columns:1fr 1fr;gap:22px}}
-  .col h3{margin:0 0 10px 4px;font-size:20px;font-weight:800;letter-spacing:.2px}
+  .wrap{max-width:1040px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);padding:6px 10px}
+  .panel{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:14px}
+  .grid{display:grid;gap:18px}
+  @media (min-width:900px){.grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}}
+  .col h3{margin:0 0 8px 4px;font-size:18px;font-weight:800;letter-spacing:.2px}
 
-  .btn{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
-       border:1px solid var(--stroke);background:#101827;border-radius:14px;padding:10px 14px;height:52px;
+  .btn{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+       border:1px solid var(--stroke);background:#101827;border-radius:12px;padding:8px 12px;height:46px;
        transition:transform .06s ease, background .2s ease, border-color .2s ease;}
   .btn:hover{background:#111c31;border-color:#2a3a58}
   .btn:active{transform:translateY(1px)}
-  .btn .icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--stroke);overflow:hidden}
+  .btn .icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--stroke);overflow:hidden;background:#0d1424}
   .btn .icon img{width:100%;height:100%;object-fit:cover;display:block}
-  .btn .text{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .btn .sub{display:block;font-weight:500;font-size:12px;color:var(--muted)}
-  .col .btn + .btn{margin-top:14px}
+  .btn .text{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;line-height:1.2}
+  .btn .sub{display:block;font-weight:500;font-size:11.5px;color:var(--muted)}
+  .col .btn + .btn{margin-top:10px}
   .ig .icon{background:#ff3b5c1a}
   .et .icon{background:#ef6c001a}
   .yt .icon{background:#ff00001a}
@@ -40,9 +40,75 @@
 <div class="wrap">
   <div class="panel">
     <div class="grid">
-      <!-- External / Social -->
+      <!-- Explore -->
+      <section class="col" aria-label="Explore NH48pics">
+        <h3>Explore</h3>
+
+        <a class="btn web" href="/">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_973560d0c73d4979882b5097d42b1368~mv2.png" alt="Home icon">
+          </span>
+          <span class="text">Home<span class="sub">NH48pics.com</span></span>
+        </a>
+
+        <a class="btn web" href="https://www.nh48.app" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_6dfce097ed584b5296afeb83f26e4c8a~mv2.png" alt="Peakbagger's Journal icon">
+          </span>
+          <span class="text">Peakbagger’s Journal<span class="sub">Track hikes &amp; peak lists</span></span>
+        </a>
+
+        <a class="btn web" href="https://www.nh48.info" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="nh48API_logo.png" alt="NH48 API app icon">
+          </span>
+          <span class="text">NH48 API Web App<span class="sub">Search peaks on nh48.info</span></span>
+        </a>
+
+        <a class="btn web" href="/contact">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_eeedbf6b9b914766936ea4d99b62d5a6~mv2.png" alt="Contact icon">
+          </span>
+          <span class="text">Contact<span class="sub">Questions &amp; custom orders</span></span>
+        </a>
+      </section>
+
+      <!-- Howker Ridge Projects -->
+      <section class="col" aria-label="Howker Ridge Projects">
+        <h3>Howker Ridge</h3>
+
+        <a class="btn web" href="project_landing_page.html" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="Trail overview logo.png" alt="Project overview icon">
+          </span>
+          <span class="text">Project Overview<span class="sub">Howker Ridge landing page</span></span>
+        </a>
+
+        <a class="btn web" href="https://www.nh48pics.com/hrt-trail-map" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_28672dbcb1514038b7656139137c4a05~mv2.png" alt="Trail Map icon">
+          </span>
+          <span class="text">Howker Ridge Trail Map<span class="sub">Interactive trail map &amp; POIs</span></span>
+        </a>
+
+        <a class="btn web" href="https://www.nh48pics.com/hrt-plant-catalog" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_ae699f4f2e4f4f28b7734c32b8cbfedc~mv2.png" alt="Plant catalog icon">
+          </span>
+          <span class="text">Plant Catalog<span class="sub">Howker Ridge alpine flora</span></span>
+        </a>
+
+        <a class="btn web" href="https://www.nh48pics.com/hrt-projects" target="_blank" rel="noopener noreferrer">
+          <span class="icon" aria-hidden="true">
+            <img src="https://static.wixstatic.com/media/66b1b2_9d069d65e7fc43059106f805a45de873~mv2.png" alt="Projects icon">
+          </span>
+          <span class="text">Howker Trail Conditions<span class="sub">Weather, snowfall, &amp; docs</span></span>
+        </a>
+      </section>
+
+      <!-- Links & More (socials) -->
       <section class="col" aria-label="External links">
-        <h3>Links & More</h3>
+        <h3>Links &amp; More</h3>
 
         <a class="btn ig" href="https://www.instagram.com/nate_dumps_pics" target="_blank" rel="noopener noreferrer">
           <span class="icon" aria-hidden="true">
@@ -65,53 +131,11 @@
           <span class="text">nate_dumps_vids<span class="sub">YouTube</span></span>
         </a>
 
-        <div class="note">External links open in a new tab.</div>
-      </section>
-
-      <!-- Internal / Site -->
-      <section class="col" aria-label="NH48pics internal links">
-        <h3>On this site</h3>
-
-        <a class="btn web" href="https://www.nh48.info" target="_blank" rel="noopener noreferrer">
-          <span class="icon" aria-hidden="true">
-            <img src="nh48API_logo.png" alt="NH48 API app icon">
-          </span>
-          <span class="text">NH48 API Web App<span class="sub">Search peaks on nh48.info</span></span>
-        </a>
-
         <a class="btn web" href="https://www.nh48.info/pages/trails_app.html" target="_blank" rel="noopener noreferrer">
           <span class="icon" aria-hidden="true">
             <img src="WMNF_Trails_API_logo.png" alt="WMNF Trails app icon">
           </span>
-          <span class="text">WMNF Trails Web App<span class="sub">Trail explorer on nh48.info</span></span>
-        </a>
-
-        <a class="btn web" href="https://www.nh48.app" target="_blank" rel="noopener noreferrer">
-          <span class="icon" aria-hidden="true">
-            <img src="https://static.wixstatic.com/media/66b1b2_6dfce097ed584b5296afeb83f26e4c8a~mv2.png" alt="Peakbagger's Journal Icon">
-          </span>
-          <span class="text">Peakbagger’s Journal<span class="sub">Free hiking checklist web app</span></span>
-        </a>
-
-        <a class="btn web" href="/">
-          <span class="icon" aria-hidden="true">
-            <img src="https://static.wixstatic.com/media/66b1b2_97d45b297b0a42d59efff0647204c215~mv2.png" alt="Home icon">
-          </span>
-          <span class="text">Home<span class="sub">NH48pics.com</span></span>
-        </a>
-
-        <a class="btn web" href="/category/all-products">
-          <span class="icon" aria-hidden="true">
-            <img src="https://static.wixstatic.com/media/66b1b2_973560d0c73d4979882b5097d42b1368~mv2.png" alt="Order Prints icon">
-          </span>
-          <span class="text">Order Prints<span class="sub">Framed & unframed photos</span></span>
-        </a>
-
-        <a class="btn web" href="/contact">
-          <span class="icon" aria-hidden="true">
-            <img src="https://static.wixstatic.com/media/66b1b2_eeedbf6b9b914766936ea4d99b62d5a6~mv2.png" alt="Contact icon">
-          </span>
-          <span class="text">Contact<span class="sub">Questions & custom orders</span></span>
+          <span class="text">White Mountain Trails App<span class="sub">Trail explorer on nh48.info</span></span>
         </a>
       </section>
     </div>
