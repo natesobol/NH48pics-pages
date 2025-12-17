@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Mount Madison • Howker Ridge — Live Trail Conditions (Weather, Snow, Alerts)</title>
+<meta name="description" content="Live Mount Madison & Howker Ridge conditions: NWS forecast & alerts, 24-hour snowfall, snow depth, freezing level, White Mountain National Forest notices, and detailed trail metadata.">
+
+<!-- SEO / social -->
+<link rel="canonical" href="https://nh48pics.com/howker-ridge-conditions">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:site_name" content="NH48 Pics">
+<meta property="og:url" content="https://nh48pics.com/howker-ridge-conditions">
+<meta property="og:title" content="Mount Madison • Howker Ridge — Live Trail Conditions">
+<meta property="og:description" content="NWS forecast & alerts plus snow depth, 24h snowfall, and freezing level for Mount Madison. Includes detailed Howker Ridge trail info.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mount Madison • Howker Ridge — Live Trail Conditions">
+<meta name="twitter:description" content="NWS forecast & alerts plus snow depth, 24h snowfall, and freezing level for Mount Madison. Includes detailed Howker Ridge trail info.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mount Madison • Howker Ridge — Current Conditions",
+  "description": "Live Mount Madison & Howker Ridge conditions: NWS forecast & alerts, 24-hour snowfall, snow depth, freezing level, WMNF notices, and detailed trail metadata.",
+  "inLanguage": "en-US",
+  "url": "https://nh48pics.com/howker-ridge-conditions",
+  "author": {"@type": "Person", "name": "Nathan Sobol"},
+  "isPartOf": {"@type": "WebSite", "name": "NH48 Pics", "url": "https://nh48pics.com"},
+  "about": {"@type": "Place", "name": "Mount Madison (Howker Ridge)", "geo": {"@type": "GeoCoordinates", "latitude": 44.3288173, "longitude": -71.2767796}}
+}
+</script>
+
+<style>
+  :root{
+    --bg:#0c0d0f; --card:#14161a; --ink:#eef1f4; --muted:#a6acb3; --line:#22252b;
+    --accent:#5aa9ff; --good:#3fb950; --warn:#f1c40f; --bad:#ff6b6b; --info:#60b0f0; --trail:#c49a6c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1100px;margin:32px auto;padding:0 16px}
+  h1{font-size:1.9rem;margin:.2rem 0 .4rem}
+  .sub{color:var(--muted);margin-bottom:8px}
+
+  /* grid for the 4 condition cards */
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));grid-auto-rows:1fr}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 4px 18px rgba(0,0,0,.25);display:flex;flex-direction:column}
+  /* vertical gap between stacked (full-width) panels */
+  .card.wide{margin-bottom:20px}
+
+  .label{color:var(--muted);font-size:.95rem;margin-bottom:8px;display:flex;gap:.5rem;align-items:center}
+  .value{font-weight:600}
+  .row{display:flex;align-items:center;justify-content:space-between;margin:8px 0;gap:10px}
+  .small{font-size:.9rem;color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+  .hidden{display:none}
+  .btn{appearance:none;border:1px solid #2a2d33;background:#191d23;color:#eaecef;padding:8px 10px;border-radius:10px;cursor:pointer}
+  .alert{border-left:4px solid var(--warn);padding-left:10px;margin:10px 0}
+  .alert.severe{border-color:var(--bad)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#1f2630;color:#cbd5e1;font-size:.8rem;margin-left:8px}
+  .links a{color:var(--accent);text-decoration:none}
+  .links a:hover{text-decoration:underline}
+  ul.clean{list-style:none;margin:0;padding:0}
+  li.line{border-top:1px solid var(--line);padding:8px 0}
+  .ico{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+  .ico-fill{width:18px;height:18px;fill:currentColor}
+  .kv{display:grid;grid-template-columns:max(190px,28%) 1fr;gap:8px 14px;margin:10px 0}
+  .kv .lab::after{content:";";margin-left:3px;color:var(--muted)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .badge{background:#1f2630;border:1px solid #2a2d33;color:#d6dde6;border-radius:999px;padding:3px 10px;font-size:.8rem}
+  .wide{grid-column:1/-1}
+  .footer-row{display:flex;gap:12px;align-items:center}
+  .footer-row .right{margin-left:auto;text-align:right}
+
+  /* ------------------ MOBILE TUNE-UPS ------------------ */
+  @media (max-width: 740px){
+    /* keep desktop layout intact; only adjust on mobile */
+    .wrap{margin:20px auto;padding:0 12px}
+    .grid{grid-template-columns:1fr;gap:14px}
+    .card.wide{margin-bottom:16px}
+
+    /* prevent UI runoff inside panels */
+    .row{flex-wrap:wrap;gap:6px}
+    .row .value{width:100%}
+    .kv{grid-template-columns:1fr}
+    .links{line-height:1.7}
+    .badges{gap:6px}
+
+    /* footer wraps cleanly */
+    .footer-row{flex-wrap:wrap;align-items:flex-start}
+    .footer-row .right{margin-left:0;text-align:left;width:100%}
+  }
+  .wrap {
+border: 2px solid #ffffff; /* white border */
+border-radius: 10px; /* rounded corners */
+overflow: hidden; /* ensures children don’t spill outside rounded edge */
+}
+  /* === Wix HTML embed: remove top gap + transparent edges === */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important; /* let page bg show through */
+}
+
+/* Outer container: no border, no extra spacing */
+.wrap {
+  margin: 0 auto !important;       /* kill the top margin */
+  padding: 0 16px !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Ensure headings don’t reintroduce a top offset */
+header { margin-top: 0 !important; }
+h1 { margin-top: 0 !important; }
+
+/* First full-width card should sit flush under the header */
+.wrap > .card.wide:first-of-type { margin-top: 0 !important; }
+
+</style>
+</head>
+<body>
+<div class="wrap" role="main">
+
+  <header>
+    <h1 id="page-title">Mount Madison • Howker Ridge — Current Conditions</h1>
+    <p class="sub" aria-describedby="data-sources">
+      Live summary using open data sources (NWS, Open-Meteo, USFS). Coordinates from USGS GNIS.
+      <span id="data-sources" class="small">NWS forecasts/alerts · Open-Meteo snowfall/depth/freezing level · USFS WMNF notices.</span>
+    </p>
+  </header>
+
+  <!-- Safety at the very top -->
+  <section class="card wide" aria-labelledby="safety-h">
+    <div class="label" id="safety-h">
+      <svg class="ico-fill" style="color:#8bd17c" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l6 6L20 6"/></svg>
+      Safety & Responsibility
+    </div>
+    <p class="small" style="background:#101316;border:1px dashed #2a2d33;border-radius:12px;padding:12px" role="note" aria-label="Safety disclaimer">
+      IMPORTANT: This page is for trip planning only. Weather, snow, and trail conditions change rapidly. Forecasts, GPS coordinates, and third-party feeds may be inaccurate or delayed. By using this page you agree that you are solely responsible for your safety and decisions in the field. Always carry proper gear, check multiple sources, and turn back if conditions deteriorate.
+    </p>
+  </section>
+
+  <!-- Helpful Links -->
+  <section class="card wide" aria-labelledby="links-h">
+    <div class="label" id="links-h">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.59 13.41 9.17 12A4 4 0 0 1 9.17 6l3.66-3.66a4 4 0 0 1 5.66 5.66L17.07 9.41"/><path d="M13.41 10.59 14.83 12A4 4 0 1 1 9.17 18L5.51 21.66A4 4 0 1 1 -.15 16l1.41-1.41"/></svg>
+      Helpful Links
+    </div>
+    <div class="links small" aria-label="External resources">
+      • Avalanche Forecast: <a href="https://www.mountwashingtonavalanchecenter.org/forecasts/" target="_blank" rel="noopener" aria-label="Mount Washington Avalanche Center forecast">MWAC</a>
+      • Higher Summits: <a href="https://www.mountwashington.org/weather/higher-summits-forecast.aspx" target="_blank" rel="noopener" aria-label="Mount Washington Observatory higher summits forecast">MWObs Forecast</a>
+      • AMC Weather & Trail Conditions: <a href="https://www.outdoors.org/weather-trail-conditions/" target="_blank" rel="noopener" aria-label="Appalachian Mountain Club trail conditions">AMC</a>
+      • WMNF Alerts: <a href="https://www.fs.usda.gov/r09/whitemountain/alerts" target="_blank" rel="noopener" aria-label="White Mountain National Forest alerts">USFS</a>
+    </div>
+  </section>
+
+  <!-- Trail Metadata (full width, corrected length, no Managers/Seasonality) -->
+  <section class="card wide" aria-labelledby="trail-h">
+    <div class="label" id="trail-h">
+      <svg class="ico-fill" style="color:var(--trail)" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20c2-2 5-3 9-3s7 1 9 3M7 17l3-5 3 2 4-7"/></svg>
+      Howker Ridge Trail — Metadata
+    </div>
+
+    <div class="kv">
+      <div class="lab">Length</div><div>≈ 4.5 mi (7.2 km) one-way</div>
+      <div class="lab">Total Elevation Gain</div><div>≈ 3,900 ft (1,190 m)</div>
+      <div class="lab">Typical Time (RT)</div><div>~ 6 hours (avg)</div>
+      <div class="lab">Difficulty</div><div>Strenuous / hard</div>
+      <div class="lab">Terrain</div><div>Rocky, steep ridgeline; scrambles over the Howks; alpine exposure</div>
+      <div class="lab">Water</div><div>Lower Bumpus Brook; spring near Pine Link jct; hut (seasonal)</div>
+      <div class="lab">Designations</div><div>WMNF; intersects AT (Osgood Tr.); NH 4000-Footer list</div>
+      <div class="lab">Trailhead & Parking</div><div>Randolph East (Pinkham B / Dolly Copp Rd); winter access via US-2; alt. Appalachia lot</div>
+      <div class="lab">Camping Nearby</div><div>AMC Madison Spring Hut (seasonal); Valley Way Tentsite; RMC cabins / Perch</div>
+      <div class="lab">Dogs</div><div>Allowed but not recommended (ledges / exposure)</div>
+      <div class="lab">Historical Note</div><div>Named for the Howker family; classic northern Presidential route</div>
+    </div>
+
+    <div class="badges">
+      <span class="badge">Views</span><span class="badge">Waterfalls</span><span class="badge">Scrambling</span><span class="badge">Alpine Zone</span>
+    </div>
+
+    <p class="small" style="margin-top:10px">
+      Trail facts compiled from authoritative sources (White Mountain guide references, USFS/RMC, AMC, and vetted trip reports).*
+    </p>
+  </section>
+
+  <!-- Even grid for conditions -->
+  <section class="grid" aria-label="Conditions Grid">
+    <section class="card" aria-labelledby="meta-h">
+      <div class="label" id="meta-h">
+        <svg class="ico-fill" style="color:var(--info)" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.314 7 11 7 11s7-5.686 7-11a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+        Peak Metadata
+      </div>
+      <div class="row"><span>Official name</span><span class="value">Mount Madison</span></div>
+      <div class="row"><span>Coordinates (WGS84)</span><span class="value mono">44.3288173, -71.2767796</span></div>
+      <div class="row"><span>Elevation</span><span class="value">5,367 ft (1,636 m)</span></div>
+      <div class="small">Source: USGS GNIS / WMNF references.</div>
+    </section>
+
+    <section class="card" aria-labelledby="wx-h">
+      <div class="label" id="wx-h">
+        <svg class="ico-fill" style="color:#ffd166" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18a4 4 0 0 1 4-4h1a5 5 0 1 1 0 10h-1a4 4 0 0 1-4-4Z"/><path d="M12 3v2M4.22 5.22l1.42 1.42M3 12h2m12-7.78-1.42 1.42M21 12h-2"/></svg>
+        NWS Forecast Snapshot
+      </div>
+      <div id="wxSummary" class="value" aria-live="polite">Loading forecast…</div>
+      <div class="small" id="wxMeta"></div>
+      <div style="margin-top:10px"><button class="btn" id="btnWxHourly" aria-controls="wxHourly" aria-expanded="false">Show next 24h (hourly)</button></div>
+      <div id="wxHourly" class="small hidden" aria-hidden="true"></div>
+    </section>
+
+    <section class="card" aria-labelledby="alerts-h">
+      <div class="label" id="alerts-h">
+        <svg class="ico-fill" style="color:var(--warn)" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 20h20L12 2Z"/><path d="M12 8v6" stroke="#000" stroke-width="2"/><circle cx="12" cy="17" r="1.5" fill="#000"/></svg>
+        Active Weather Alerts (NWS)
+      </div>
+      <div id="alertsList" class="small">Loading alerts…</div>
+    </section>
+
+    <section class="card" aria-labelledby="snow-h">
+      <div class="label" id="snow-h">
+        <svg class="ico-fill" style="color:#7dd3fc" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4.93 5.93l14.14 12.14M4.93 18.07L19.07 5.93M2 12h20"/></svg>
+        Snow & Freezing Level (last 24h)
+      </div>
+      <div id="snowSummary" class="value">Loading snow data…</div>
+      <ul id="snowList" class="clean small" aria-live="polite"></ul>
+      <div class="small">Source: Open-Meteo forecast API.</div>
+    </section>
+  </section>
+
+  <!-- Footer: last updated left, author/copyright right -->
+  <section class="card wide" style="margin-top:16px" aria-label="Footer meta">
+    <div class="footer-row">
+      <div class="small">Last updated: <span id="stamp">—</span></div>
+      <div class="small right">© <span id="year"></span> Nathan Sobol • Author</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(async function(){
+  const lat = 44.3288173, lon = -71.2767796;
+  const fmtTime = iso => new Date(iso).toLocaleString();
+
+  // stamp + copyright year
+  const now = new Date();
+  const stamp = document.getElementById('stamp'); if (stamp) stamp.textContent = now.toLocaleString();
+  const yEl = document.getElementById('year'); if (yEl) yEl.textContent = now.getFullYear();
+
+  // NWS
+  try {
+    const headers = { 'User-Agent': 'HowkerRidgeConditions/1.0 (natesobol@gmail.com)' };
+    const pt = await fetch(`https://api.weather.gov/points/${lat},${lon}`, { headers }).then(r=>r.json());
+    const fc = await fetch(pt.properties.forecast, { headers }).then(r=>r.json());
+    const p0 = fc.properties.periods?.[0];
+    document.getElementById('wxSummary').textContent = p0
+      ? `${p0.name}: ${p0.shortForecast}, ${p0.temperature}°${p0.temperatureUnit}, wind ${p0.windDirection || ''} ${p0.windSpeed || ''}.`
+      : 'No forecast periods returned.';
+    document.getElementById('wxMeta').textContent = p0 ? `Issued: ${fmtTime(p0.startTime)} • Source: NWS` : '';
+
+    const hr = await fetch(pt.properties.forecastHourly, { headers }).then(r=>r.json());
+    const hours = (hr.properties.periods || []).slice(0, 24)
+      .map(p => `${new Date(p.startTime).toLocaleTimeString([], {hour:'numeric'})}: ${p.temperature}°${p.temperatureUnit}, ${p.shortForecast}, wind ${p.windSpeed}`)
+      .join('<br/>');
+    const hourly = document.getElementById('wxHourly');
+    hourly.innerHTML = hours || 'No hourly data.';
+    const btn = document.getElementById('btnWxHourly');
+    btn.onclick = () => {
+      const open = hourly.classList.toggle('hidden') === false;
+      hourly.setAttribute('aria-hidden', (!open).toString());
+      btn.setAttribute('aria-expanded', open.toString());
+      btn.textContent = open ? 'Hide next 24h' : 'Show next 24h (hourly)';
+    };
+
+    const alerts = await fetch(`https://api.weather.gov/alerts/active?point=${lat},${lon}`, { headers }).then(r=>r.json());
+    const feats = alerts.features || [];
+    const list = document.getElementById('alertsList');
+    if (!feats.length) list.textContent = 'No active alerts for this point.';
+    else list.innerHTML = feats.map(f => {
+      const sev = (f.properties.severity || '').toLowerCase();
+      const klass = (sev === 'severe' || sev === 'extreme') ? 'alert severe' : 'alert';
+      const detailsUrl = f.properties?.url || f.id;
+      return `<div class="${klass}">
+        <div><strong>${f.properties.event}</strong> <span class="pill">${f.properties.severity || ''}</span></div>
+        <div>${f.properties.headline || ''}</div>
+        <div class="small">Effective ${fmtTime(f.properties.effective)} • Expires ${fmtTime(f.properties.expires)}</div>
+        <div class="small"><a target="_blank" rel="noopener" href="${detailsUrl}" aria-label="Read details for ${f.properties.event} (opens in new tab)">Details</a></div>
+      </div>`;
+    }).join('');
+  } catch (e) {
+    document.getElementById('wxSummary').textContent = 'Unable to load NWS data at the moment.';
+    document.getElementById('alertsList').textContent = 'Unable to load NWS alerts.';
+  }
+
+  // Open-Meteo
+  try {
+    const url = new URL('https://api.open-meteo.com/v1/forecast');
+    url.search = new URLSearchParams({
+      latitude: lat, longitude: lon, timezone: 'auto',
+      hourly: 'snowfall,snow_depth,freezing_level_height',
+      forecast_days: 2
+    }).toString();
+    const j = await fetch(url).then(r=>r.json());
+    const t = j.hourly.time, snow=j.hourly.snowfall||[], depth=j.hourly.snow_depth||[], frz=j.hourly.freezing_level_height||[];
+    const nowT = Date.now(), since = nowT - 24*3600*1000;
+    let sumSnow=0, latestDepth=null, latestFrz=null;
+    for (let i=0;i<t.length;i++){
+      const ts = new Date(t[i]).getTime();
+      if (ts >= since) sumSnow += Number(snow[i]||0);
+      if (ts <= nowT) { latestDepth = (depth[i] ?? latestDepth); latestFrz = (frz[i] ?? latestFrz); }
+    }
+    const rnd = (x,n=1)=> (x==null||isNaN(x))?null:Math.round(x*10**n)/10**n;
+    document.getElementById('snowSummary').textContent =
+      `24h snowfall: ${rnd(sumSnow,1) ?? '—'} cm • Latest snow depth: ${rnd(latestDepth,1) ?? '—'} cm • Freezing level: ${latestFrz!=null?Math.round(latestFrz)+' m':'—'}`;
+
+    const rows=[]; // next 24h in ~3h steps
+    for (let i=0;i<t.length && rows.length<8;i+=3){
+      const dt=new Date(t[i]); if (dt.getTime()<since) continue;
+      rows.push(`<li class="line"><strong>${dt.toLocaleTimeString([], {hour:'numeric'})}</strong> — snowfall ${rnd(snow[i],1) ?? '—'} cm, depth ${rnd(depth[i],1) ?? '—'} cm, freezing lvl ${frz[i]!=null?Math.round(frz[i])+' m':'—'}</li>`);
+    }
+    document.getElementById('snowList').innerHTML = rows.join('') || '<li>No recent snow data.</li>';
+  } catch (e){
+    document.getElementById('snowSummary').textContent = 'Unable to load snow data.';
+    document.getElementById('snowList').innerHTML = '<li>Open-Meteo request failed.</li>';
+  }
+})();
+</script>
+</body>
+</html>
