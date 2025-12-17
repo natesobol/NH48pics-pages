@@ -73,6 +73,9 @@
   .wide{grid-column:1/-1}
   .footer-row{display:flex;gap:12px;align-items:center}
   .footer-row .right{margin-left:auto;text-align:right}
+  .brushing-figure{margin:0}
+  .brushing-img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:#0c0d0f}
+  .brushing-cap{margin-top:8px;color:var(--muted);font-size:.92rem}
 
   /* ------------------ MOBILE TUNE-UPS ------------------ */
   @media (max-width: 740px){
@@ -132,6 +135,18 @@ h1 { margin-top: 0 !important; }
       <span id="data-sources" class="small">NWS forecasts/alerts · Open-Meteo snowfall/depth/freezing level · USFS WMNF notices.</span>
     </p>
   </header>
+
+  <!-- Latest brushing map -->
+  <section class="card wide" aria-labelledby="brushing-h">
+    <div class="label" id="brushing-h">
+      <svg class="ico-fill" style="color:#8bd17c" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l6 6L20 6"/></svg>
+      Howker Ridge Latest Brushing Report
+    </div>
+    <figure class="brushing-figure">
+      <img class="brushing-img" src="Howker%20Ridge%20Brushing.png" alt="Map showing latest brushing status for the Howker Ridge Trail" loading="lazy" aria-describedby="brushing-cap">
+      <figcaption class="brushing-cap" id="brushing-cap">Latest Brushing Map</figcaption>
+    </figure>
+  </section>
 
   <!-- Safety at the very top -->
   <section class="card wide" aria-labelledby="safety-h">
