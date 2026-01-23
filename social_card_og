@@ -518,7 +518,7 @@
         </a>
 
         <!-- Peakbagger’s Journal web app -->
-        <a class="link" href="https://www.nh48.app/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=peakbagger" target="_blank" rel="noopener noreferrer" aria-label="Open Peakbagger’s Journal Web app">
+        <a class="link" href="https://nh48.app/?utm_source=links&amp;utm_medium=social&amp;utm_campaign=peakbagger" target="_blank" rel="noopener noreferrer" aria-label="Open Peakbagger’s Journal Web app">
           <span class="icon app-logo" aria-hidden="true"><img loading="lazy" src="https://static.wixstatic.com/media/66b1b2_6dfce097ed584b5296afeb83f26e4c8a~mv2.png" alt="Peakbagger logo" /></span>
           <span class="txt">Peakbagger’s Journal Web App</span>
           <span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>

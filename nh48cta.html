@@ -420,7 +420,7 @@
         Track, save &amp; export your hiking lists privately and for free with
         <strong>Peakbagger’s Journal Web App</strong>.
       </p>
-      <a href="https://www.nh48.app"
+      <a href="https://nh48.app"
          class="nh-btn nh-btn-green"
          target="_top"
          aria-label="Open Peakbagger’s Journal Web App">
@@ -479,8 +479,8 @@ function goToPeak() {
   const name = nhSearch.value.trim();
   if (!name) return;
   const slug = slugify(name);
-  // Navigate to the NH48 API peak detail page
-  window.open(`https://www.nh48.info/nh48_peak.html?slug=${slug}`, "_top");
+  // Navigate to the NH48 peak detail page
+  window.open(`https://nh48.info/peak/${slug}/`, "_top");
 }
 
 // Render suggestion list based on current query
