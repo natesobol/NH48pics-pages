@@ -332,6 +332,11 @@
     flex-wrap:nowrap;
   }
 
+  .foot .share-policy{
+    font-size:11px;
+    line-height:1.4;
+  }
+
   /* Links inside the policies */
   .foot .policies a{
     color: var(--ink);
@@ -469,12 +474,12 @@
         <!-- Tagline: show single-line on desktop, two-line on mobile -->
 		<div class="title">
 		  <!-- Desktop view: one line with bullets -->
-		  <span class="title-desktop">New Hampshire Photographer • RMC Trail Adopter • “Gridiot”</span>
+		  <span class="title-desktop">New Hampshire Photographer • RMC Trail Adopter</span>
 
 		  <!-- Mobile view: first line without bullet; second line with bullet -->
 		  <span class="title-mobile">
 			<span>New Hampshire Photographer</span><br>
-			<span>RMC Trail Adopter • “Gridiot”</span>
+			<span>RMC Trail Adopter</span>
 		  </span>
 		</div>
 
@@ -542,6 +547,7 @@
       <div class="foot">
         <!-- Copy line with dynamic year -->
         <div class="copy">© <span id="yr"></span> Nathan Sobol • All rights reserved</div>
+        <div class="share-policy">Share Policy: Free/Open sharing policy for all individual photos &amp; posts with ig credit: @nate_dumps_pics. All photos are inherently copyrighted prohibiting reprint &amp; direct monetization unless otherwise stated.</div>
         <!-- Terms and Privacy appear below in separate container -->
         <div class="policies">
           <a href="https://www.nh48pics.com/terms" target="_blank" rel="noopener noreferrer" aria-label="Terms and Conditions">Terms</a>
