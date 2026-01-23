@@ -34,8 +34,8 @@
 
 <style>
   :root{
-    --bg:#0c0d0f; --card:#14161a; --ink:#ffffff; --muted:#d7dce4; --line:#22252b;
-    --accent:#5aa9ff; --good:#3fb950; --warn:#f1c40f; --bad:#ff6b6b; --info:#60b0f0; --trail:#c49a6c;
+    --bg:#0c0d0f; --card:#14161a; --ink:#ffffff; --muted:#ffffff; --line:#22252b;
+    --accent:#ffffff; --good:#3fb950; --warn:#f1c40f; --bad:#ff6b6b; --info:#60b0f0; --trail:#c49a6c;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}
@@ -56,10 +56,10 @@
   .small{font-size:.9rem;color:var(--ink)}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere}
   .hidden{display:none}
-  .btn{appearance:none;border:1px solid #2a2d33;background:#191d23;color:#eaecef;padding:8px 10px;border-radius:10px;cursor:pointer}
+  .btn{appearance:none;border:1px solid #2a2d33;background:#191d23;color:#ffffff;padding:8px 10px;border-radius:10px;cursor:pointer}
   .alert{border-left:4px solid var(--warn);padding-left:10px;margin:10px 0}
   .alert.severe{border-color:var(--bad)}
-  .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#1f2630;color:#cbd5e1;font-size:.8rem;margin-left:8px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#1f2630;color:#ffffff;font-size:.8rem;margin-left:8px}
   .links a{color:var(--accent);text-decoration:none}
   .links a:hover{text-decoration:underline}
   ul.clean{list-style:none;margin:0;padding:0}
@@ -69,7 +69,7 @@
   .kv{display:grid;grid-template-columns:max(190px,28%) 1fr;gap:8px 14px;margin:10px 0}
   .kv .lab::after{content:";";margin-left:3px;color:var(--muted)}
   .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .badge{background:#1f2630;border:1px solid #2a2d33;color:#d6dde6;border-radius:999px;padding:3px 10px;font-size:.8rem}
+  .badge{background:#1f2630;border:1px solid #2a2d33;color:#ffffff;border-radius:999px;padding:3px 10px;font-size:.8rem}
   .wide{grid-column:1/-1}
   .footer-row{display:flex;gap:12px;align-items:center}
   .footer-row .right{margin-left:auto;text-align:right}
@@ -93,6 +93,21 @@
   .snow-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#101318}
   .snow-list .time{font-weight:700}
   .snow-list .metrics{color:var(--muted);font-size:.92rem;text-align:right}
+
+  .page-header{display:flex;flex-direction:column;gap:6px}
+  .backlinks{font-size:.9rem;align-self:flex-end;display:flex;gap:6px;flex-wrap:wrap}
+  .backlinks a{color:#ffffff;text-decoration:none}
+  .backlinks a:hover{text-decoration:underline}
+
+  .info-panel{background:linear-gradient(180deg,#171b22 0%, #101318 100%);border:1px solid #2a2d33}
+  .info-grid{display:grid;gap:12px}
+  .info-block{background:#101318;border:1px solid #2a2d33;border-radius:12px;padding:12px}
+  .info-title{font-weight:600;margin-bottom:6px}
+  .info-panel .links{line-height:1.8}
+
+  @media (min-width: 820px){
+    .info-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  }
 
   /* ------------------ MOBILE TUNE-UPS ------------------ */
   @media (max-width: 740px){
@@ -145,12 +160,15 @@ h1 { margin-top: 0 !important; }
 <body>
 <div class="wrap" role="main">
 
-  <header>
+  <header class="page-header">
     <h1 id="page-title">Mount Madison • Howker Ridge — Current Conditions</h1>
-    <p class="sub" aria-describedby="data-sources">
-      Live summary using open data sources (NWS, Open-Meteo, USFS). Coordinates from USGS GNIS.
-      <span id="data-sources" class="small">NWS forecasts/alerts · Open-Meteo snowfall/depth/freezing level · USFS WMNF notices.</span>
-    </p>
+    <nav class="backlinks" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/projects">Projects</a>
+      <span>/</span>
+      <a href="/projects/hrt-info">Howker Ridge Trail Info</a>
+    </nav>
   </header>
 
   <!-- Latest brushing map -->
@@ -165,28 +183,28 @@ h1 { margin-top: 0 !important; }
     </figure>
   </section>
 
-  <!-- Safety at the very top -->
-  <section class="card wide" aria-labelledby="safety-h">
-    <div class="label" id="safety-h">
+  <!-- Notice + links consolidated -->
+  <section class="card wide info-panel" aria-labelledby="notice-h">
+    <div class="label" id="notice-h">
       <svg class="ico-fill" style="color:#8bd17c" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l6 6L20 6"/></svg>
-      Safety & Responsibility
+      Trip Planning Notice
     </div>
-    <p class="small" style="background:#101316;border:1px dashed #2a2d33;border-radius:12px;padding:12px" role="note" aria-label="Safety disclaimer">
-      IMPORTANT: This page is for trip planning only. Weather, snow, and trail conditions change rapidly. Forecasts, GPS coordinates, and third-party feeds may be inaccurate or delayed. By using this page you agree that you are solely responsible for your safety and decisions in the field. Always carry proper gear, check multiple sources, and turn back if conditions deteriorate.
-    </p>
-  </section>
-
-  <!-- Helpful Links -->
-  <section class="card wide" aria-labelledby="links-h">
-    <div class="label" id="links-h">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.59 13.41 9.17 12A4 4 0 0 1 9.17 6l3.66-3.66a4 4 0 0 1 5.66 5.66L17.07 9.41"/><path d="M13.41 10.59 14.83 12A4 4 0 1 1 9.17 18L5.51 21.66A4 4 0 1 1 -.15 16l1.41-1.41"/></svg>
-      Helpful Links
-    </div>
-    <div class="links small" aria-label="External resources">
-      • Avalanche Forecast: <a href="https://www.mountwashingtonavalanchecenter.org/forecasts/" target="_blank" rel="noopener" aria-label="Mount Washington Avalanche Center forecast">MWAC</a>
-      • Higher Summits: <a href="https://www.mountwashington.org/weather/higher-summits-forecast.aspx" target="_blank" rel="noopener" aria-label="Mount Washington Observatory higher summits forecast">MWObs Forecast</a>
-      • AMC Weather & Trail Conditions: <a href="https://www.outdoors.org/weather-trail-conditions/" target="_blank" rel="noopener" aria-label="Appalachian Mountain Club trail conditions">AMC</a>
-      • WMNF Alerts: <a href="https://www.fs.usda.gov/r09/whitemountain/alerts" target="_blank" rel="noopener" aria-label="White Mountain National Forest alerts">USFS</a>
+    <div class="info-grid">
+      <div class="info-block">
+        <div class="info-title">Safety & Responsibility</div>
+        <p class="small" role="note" aria-label="Safety disclaimer">
+          IMPORTANT: This page is for trip planning only. Weather, snow, and trail conditions change rapidly. Forecasts, GPS coordinates, and third-party feeds may be inaccurate or delayed. By using this page you agree that you are solely responsible for your safety and decisions in the field. Always carry proper gear, check multiple sources, and turn back if conditions deteriorate.
+        </p>
+      </div>
+      <div class="info-block">
+        <div class="info-title">Helpful Links</div>
+        <div class="links small" aria-label="External resources">
+          • Avalanche Forecast: <a href="https://www.mountwashingtonavalanchecenter.org/forecasts/" target="_blank" rel="noopener" aria-label="Mount Washington Avalanche Center forecast">MWAC</a>
+          • Higher Summits: <a href="https://www.mountwashington.org/weather/higher-summits-forecast.aspx" target="_blank" rel="noopener" aria-label="Mount Washington Observatory higher summits forecast">MWObs Forecast</a>
+          • AMC Weather & Trail Conditions: <a href="https://www.outdoors.org/weather-trail-conditions/" target="_blank" rel="noopener" aria-label="Appalachian Mountain Club trail conditions">AMC</a>
+          • WMNF Alerts: <a href="https://www.fs.usda.gov/r09/whitemountain/alerts" target="_blank" rel="noopener" aria-label="White Mountain National Forest alerts">USFS</a>
+        </div>
+      </div>
     </div>
   </section>
 
