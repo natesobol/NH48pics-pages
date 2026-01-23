@@ -345,6 +345,11 @@
     flex-wrap:nowrap;
   }
 
+  .foot .share-policy{
+    font-size:11px;
+    line-height:1.4;
+  }
+
   /* Links inside the policies */
   .foot .policies a{
     color: var(--ink);
@@ -596,6 +601,7 @@
       <div class="foot">
         <!-- Copy line with dynamic year -->
         <div class="copy">© <span id="yr"></span> Nathan Sobol • All rights reserved</div>
+        <div class="share-policy">Share Policy: Free/Open sharing policy for all individual photos &amp; posts with ig credit: @nate_dumps_pics. All photos are inherently copyrighted prohibiting reprint &amp; direct monetization unless otherwise stated.</div>
         <!-- Terms and Privacy appear below in separate container -->
         <div class="policies">
           <a href="https://www.nh48pics.com/terms" target="_blank" rel="noopener noreferrer" aria-label="Terms and Conditions">Terms</a>
