@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NH48pics Navigation</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --panel: #101827;
+    --ink: #e6edf3;
+    --muted: #a5b4c3;
+    --stroke: #22314a;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 20px;
+    background: #0b1220;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .site-nav-item {
+    position: relative;
+  }
+
+  .site-nav-item > button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .site-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 10;
+  }
+
+  .site-nav-submenu {
+    min-width: 200px;
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    padding: 8px 0;
+  }
+
+  /* Widen Projects dropdown to ~50% more than the default */
+  .projects-submenu {
+    min-width: 300px;
+  }
+
+  .site-nav-submenu a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .site-nav-submenu a:hover {
+    background: #121c2f;
+  }
+
+  .site-nav-submenu a + a {
+    border-top: 1px dotted var(--stroke);
+  }
+
+  .demo-note {
+    padding: 18px 20px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary navigation">
+  <div class="site-nav-item">
+    <button type="button" aria-expanded="true">Projects</button>
+    <div class="site-nav-dropdown">
+      <div class="site-nav-submenu projects-submenu" aria-label="Projects short links">
+        <a href="/plant-catalog">Plant Catalog</a>
+        <a href="/howker-ridge" data-route="howker-ridge" data-routes="howker-ridge">Trail Map &amp; Data</a>
+        <a href="/projects/hrt-info" data-route="hrt-info" data-routes="hrt-info">Trail Info</a>
+        <a href="/dataset/howker-plants">Plant Data &amp; API</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<p class="demo-note">Projects dropdown shown expanded for layout review.</p>
+</body>
+</html>
